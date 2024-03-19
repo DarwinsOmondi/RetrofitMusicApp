@@ -7,7 +7,7 @@ View Album Details: Explore album details including the title and artist.
 Browse Songs: Browse through the list of songs in each album.
 Image Loading: Utilizes Glide library for efficient loading of album cover images.
 API Integration: Uses Retrofit library for seamless integration with the Deezer API.
-https://github.com/Drawins/RetrofitMusicApp.git
+https://deezerdevs-deezer.p.rapidapi.com/search
 
 **Installation**
 Clone the repository:
