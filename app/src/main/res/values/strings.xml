@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Music</string>
+    <string name="enter_name_of_artist">Enter name of Artist</string>
+    <string name="search">search</string>
+</resources>
