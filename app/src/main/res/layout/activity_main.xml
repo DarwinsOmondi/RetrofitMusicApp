@@ -1,80 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="5dp">
 
     <!-- Album Info Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/image_album_cover"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="16dp"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/text_album_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_album_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:paddingTop="16dp"
+        android:text="Album Title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_album_cover"
+        app:layout_constraintTop_toTopOf="@+id/image_album_cover" />
 
+    <TextView
+        android:id="@+id/text_artist_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingTop="8dp"
+        android:text="Artist Name"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_album_cover"
+        app:layout_constraintTop_toBottomOf="@+id/text_album_title" />
 
-        <ImageView
-            android:id="@+id/image_album_cover"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="fitXY"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingStart="16dp">
-
-            <TextView
-                android:id="@+id/text_album_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Album Title"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/text_artist_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Artist Name"
-                android:textSize="16sp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Song List -->
-    <ListView
-        android:id="@+id/list_songs"
-        android:layout_width="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="16dp"/>
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/nameEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_album_cover" />
 
-    <!-- Search Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp">
+        android:hint="@string/enter_name_of_artist"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchButton" />
 
-        <EditText
-            android:id="@+id/nameEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/enter_name_of_artist"
-            android:layout_marginEnd="8dp"/>
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-            android:id="@+id/searchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search"
-            android:layout_marginStart="8dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
 
-</LinearLayout>

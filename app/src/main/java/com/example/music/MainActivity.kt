@@ -7,7 +7,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,9 +23,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textAlbumTitle: TextView
     private lateinit var textArtistName: TextView
     private lateinit var listSongs: ListView
-    private lateinit var songAdapter: SongAdapter
     private lateinit var nameEditText: EditText
     private lateinit var searchButton: Button
+    private lateinit var musicAdapter: MusicAdapter
+    private lateinit var recyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,25 +36,29 @@ class MainActivity : AppCompatActivity() {
         imageAlbumCover = findViewById(R.id.image_album_cover)
         textAlbumTitle = findViewById(R.id.text_album_title)
         textArtistName = findViewById(R.id.text_artist_name)
-        listSongs = findViewById(R.id.list_songs)
         nameEditText = findViewById(R.id.nameEditText)
         searchButton = findViewById(R.id.searchButton)
+        musicAdapter = MusicAdapter()
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.adapter = musicAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         searchButton.setOnClickListener {
             val name = nameEditText.text.toString()
             nameEditText.text.clear()
-            fetchData(name)
+            if (name.isNotEmpty()){
+                fetchData(name)
+            }else{
+                nameEditText.hint = "please insert an invalid name "
+            }
         }
     }
 
     private fun fetchData(artistName: String) {
-        val retrofitBuilder = Retrofit.Builder()
-            .baseUrl("https://deezerdevs-deezer.p.rapidapi.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiInterface::class.java)
 
+        val retrofitBuilder = RetrofitClient.getData()
         val retrofitData = retrofitBuilder.getData(artistName)
+
         retrofitData.enqueue(object : Callback<Music?> {
             override fun onResponse(call: Call<Music?>, response: Response<Music?>) {
                 if (response.isSuccessful) {
@@ -63,8 +72,7 @@ class MainActivity : AppCompatActivity() {
                             textAlbumTitle.text = song.album.title
                             textArtistName.text = song.artist.name
 
-                            songAdapter = SongAdapter(this@MainActivity, music.data)
-                            listSongs.adapter = songAdapter
+                            musicAdapter.setData(music.data)
                         }
                     }
                 } else {
