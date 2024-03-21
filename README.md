@@ -7,6 +7,7 @@ View Album Details: Explore album details including the title and artist.
 Browse Songs: Browse through the list of songs in each album.
 Image Loading: Utilizes Glide library for efficient loading of album cover images.
 API Integration: Uses Retrofit library for seamless integration with the Deezer API.
+Room DataBase : See a list of reacently searched artists 
 
 **Installation**
 Clone the repository:
@@ -21,3 +22,4 @@ Run the app on an Android emulator or physical device.
 Launch the app on your Android device.
 Enter the name of an artist in the search bar.
 Tap on the search button to view albums by the artist.
+View a list of recently searched artist
