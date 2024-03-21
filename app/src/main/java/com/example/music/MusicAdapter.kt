@@ -2,12 +2,10 @@ package com.example.music
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.music.databinding.MusicItemBinding
-import java.util.Date
 
-class MusicAdapter():RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
+class MusicAdapter:RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
     private var music:List<Data> = emptyList()
   inner class MusicViewHolder(private val binding: MusicItemBinding):RecyclerView.ViewHolder(binding.root) {
       fun bind(music:Data){
@@ -17,7 +15,6 @@ class MusicAdapter():RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
           }
       }
     }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -31,7 +28,6 @@ class MusicAdapter():RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
         val currentmusic = music[position]
         holder.bind(currentmusic)
     }
-
     override fun getItemCount(): Int {
         return music.size
     }
