@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,7 @@ class SearchFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchbutton: Button
     private lateinit var editText: EditText
+    private lateinit var clearTextView: TextView
     private lateinit var searchViewModel: SearchViewModel
     private var searchList: List<SearchData> = emptyList()
 
@@ -50,6 +52,10 @@ class SearchFragment : Fragment() {
             }
             val action = SearchFragmentDirections.actionSearchFragmentToHomeFragment(name)
             findNavController().navigate(action)
+        }
+        clearTextView = binding.clearTextView
+        clearTextView.setOnClickListener {
+            searchViewModel.deleteSearchData()
         }
 
         return binding.root

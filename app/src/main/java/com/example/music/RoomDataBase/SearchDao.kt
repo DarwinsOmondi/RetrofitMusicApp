@@ -10,8 +10,8 @@ import androidx.room.Query
 interface SearchDao {
     @Insert
     fun insertSearch(search: SearchData)
-    @Delete
-    fun deleteSerach(search: SearchData)
+    @Query("DELETE FROM SearchData")
+    fun deleteSearch()
     @Query("SELECT * FROM SearchData")
     fun getAllSearchData():LiveData<List<SearchData>>
 }

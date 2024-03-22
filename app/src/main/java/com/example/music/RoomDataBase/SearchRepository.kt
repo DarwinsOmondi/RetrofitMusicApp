@@ -8,7 +8,7 @@ class SearchRepository(private val searchDao: SearchDao) {
      fun insertSearchData(search: SearchData){
         searchDao.insertSearch(search)
     }
-     fun deleteSearchData(search: SearchData){
-        searchDao.deleteSerach(search)
+     fun deleteSearchData(){
+        searchDao.deleteSearch()
     }
 }

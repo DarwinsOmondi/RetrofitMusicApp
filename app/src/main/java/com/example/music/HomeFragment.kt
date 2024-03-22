@@ -47,15 +47,17 @@ class HomeFragment : Fragment() {
         textAlbumTitle = binding.textAlbumTitle
         textArtistName = binding.textArtistName
 
+        searchAdapter = SearchAdapter()
+        searchViewModel = ViewModelProvider(this)[SearchViewModel::class.java]
+
         val artistName = args.name
         if (artistName.isEmpty()) {
 
         } else {
             fetchData(artistName)
+            val newSearch = SearchData(0,artistName)
+            searchViewModel.insertSearchData(newSearch)
         }
-        searchAdapter = SearchAdapter()
-        searchViewModel = ViewModelProvider(this)[SearchViewModel::class.java]
-
         return binding.root
     }
 
@@ -69,16 +71,12 @@ class HomeFragment : Fragment() {
                     response.body()?.let { music ->
                         val firstSong = music.data.firstOrNull()
                         firstSong?.let { song ->
-                            Glide.with(requireContext())
+                          Glide.with(requireContext())
                                 .load(song.album.cover_medium)
                                 .into(imageAlbumCover)
 
                             textAlbumTitle.text = song.album.title
                             textArtistName.text = song.artist.name
-
-                            val newSearch = SearchData(0,artistName)
-                            searchViewModel.insertSearchData(newSearch)
-
                             musicAdapter.setData(music.data)
                         }
                     }

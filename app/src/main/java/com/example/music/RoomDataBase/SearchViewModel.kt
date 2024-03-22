@@ -20,9 +20,9 @@ class SearchViewModel(application: Application):AndroidViewModel(application) {
             searchRepository.insertSearchData(search)
         }
     }
-    fun deleteSearchData(search: SearchData){
+    fun deleteSearchData(){
         viewModelScope.launch(Dispatchers.IO) {
-            searchRepository.deleteSearchData(search)
+            searchRepository.deleteSearchData()
         }
     }
 }
