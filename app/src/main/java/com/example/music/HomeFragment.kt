@@ -84,6 +84,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Music?>, t: Throwable) {
+                println("hello")
             }
         })
     }
