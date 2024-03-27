@@ -52,11 +52,14 @@ class HomeFragment : Fragment() {
 
         val artistName = args.name
         if (artistName.isEmpty()) {
-
+            searchViewModel.readAllSearchData.observe(viewLifecycleOwner){
+                searchArtists->
+                for (searchArtist in searchArtists){
+                    fetchData(searchArtist.artist)
+                }
+            }
         } else {
             fetchData(artistName)
-            val newSearch = SearchData(0,artistName)
-            searchViewModel.insertSearchData(newSearch)
         }
         return binding.root
     }

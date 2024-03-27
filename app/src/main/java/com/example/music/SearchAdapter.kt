@@ -2,6 +2,8 @@ package com.example.music
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Adapter
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.music.RoomDataBase.SearchData
 import com.example.music.databinding.SearchItemBinding
@@ -11,6 +13,18 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     inner class SearchViewHolder(private val binding: SearchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnClickListener {
+                val artistPosition = adapterPosition
+                if (artistPosition != RecyclerView.NO_POSITION){
+                    val artist = searchList[artistPosition]
+                    val artistName = artist.artist
+                    val action = SearchFragmentDirections.actionSearchFragmentToHomeFragment(artistName)
+                    itemView.findNavController().navigate(action)
+                }
+            }
+        }
         fun bind(search: SearchData) {
             binding.artistTextView.text = search.artist
         }
