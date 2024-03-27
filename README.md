@@ -4,6 +4,7 @@ Android Music Explorer is a mobile application that allows users to explore musi
 **Features**
 Search Artists: Search for artists by name and view their albums.
 View Album Details: Explore album details including the title and artist.
+Click on the recently serach to view there album details
 Browse Songs: Browse through the list of songs in each album.
 Image Loading: Utilizes Glide library for efficient loading of album cover images.
 API Integration: Uses Retrofit library for seamless integration with the Deezer API.
